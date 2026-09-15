@@ -1,0 +1,98 @@
+:root {
+  --text: #1a1a1a;
+  --bg: #fff;
+  --border: #ddd;
+  --accent: #6b3bff;
+  --correct: #1f9d55;
+  --wrong: #e0342a;
+  color-scheme: light dark;
+  font: 16px/1.5 system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #f0f0f0;
+    --bg: #16171d;
+    --border: #333;
+  }
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.topic-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input,
+button {
+  font: inherit;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+button {
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+.error {
+  color: var(--wrong);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.option {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.option.correct {
+  background: var(--correct);
+  color: #fff;
+  border-color: var(--correct);
+}
+
+.option.wrong {
+  background: var(--wrong);
+  color: #fff;
+  border-color: var(--wrong);
+}
+
+.progress {
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
