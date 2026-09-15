@@ -1,5 +1,7 @@
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export async function fetchQuiz(topic) {
-  const res = await fetch('/api/quiz', {
+  const res = await fetch(`${API_BASE}/api/quiz`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ topic }),
