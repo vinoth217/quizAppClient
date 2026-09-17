@@ -1,6 +1,19 @@
 import { useState } from 'react';
 import { fetchQuiz } from './api';
 
+function shuffleOptions({ options, answerIndex, ...rest }) {
+  const order = options.map((_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return {
+    ...rest,
+    options: order.map((i) => options[i]),
+    answerIndex: order.indexOf(answerIndex),
+  };
+}
+
 export default function App() {
   const [screen, setScreen] = useState('topic'); // topic | loading | quiz | score
   const [topic, setTopic] = useState('');
@@ -17,7 +30,7 @@ export default function App() {
     setScreen('loading');
     try {
       const qs = await fetchQuiz(topic.trim());
-      setQuestions(qs);
+      setQuestions(qs.map(shuffleOptions));
       setIndex(0);
       setSelected(null);
       setScore(0);
